@@ -1,0 +1,8 @@
+-r requirements.simple.txt
+
+--only-binary=flashinfer-python
+flashinfer-python==0.6.6
+
+vllm==0.11.0
+transformers==4.57.1
+numpy==1.26.4
