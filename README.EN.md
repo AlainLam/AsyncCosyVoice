@@ -1,5 +1,7 @@
 # Async CosyVoice
 
+[中文](./README.md) | [English](./README.EN.md)
+
 This project modifies the original synchronous LLM inference in CosyVoice to an asynchronous implementation using AsyncLLMEngine, along with some scenario-based optimizations in the inference process.
 
 ## Main Changes
@@ -54,17 +56,17 @@ conda create -n cosyvoice python=3.10 -y
 conda activate cosyvoice
 ```
 
-4. CosyVoice requires a `setuptools` version lower than 82.0, so a compatible version is used here
+4. CosyVoice requires a `setuptools` version lower than 82.0, so a compatible set of package versions is used here
 
 ```bash
-pip install --force-reinstall setuptools==59.6.0 wheel==0.37.1 wheel_stub==0.5.0
+pip install --force-reinstall numpy==1.26.4 setuptools==59.6.0 wheel==0.37.1 wheel_stub==0.5.0
 ```
 
 5. Install dependencies: first install CosyVoice dependencies, then install this project's dependencies
 
 ```bash
-pip install -r CosyVoice/requirements.txt
-pip install -r requirements.txt
+pip install --no-build-isolation -r CosyVoice/requirements.txt
+pip install --no-build-isolation -r requirements.txt
 ```
 
 6. Make sure your model files are ready. If not, download them with one of the following methods:
@@ -76,8 +78,8 @@ Download from Hugging Face Hub:
 ```bash
 python -m venv .venv
 .venv/bin/pip install -U huggingface_hub
-.venv/bin/hf download "FunAudioLLM/Fun-CosyVoice3-0.5B-2512" --dir ./CosyVoice/pretrained_models/Fun-CosyVoice3-0.5B
-.venv/bin/hf download "FunAudioLLM/CosyVoice-ttsfrd" --dir ./CosyVoice/pretrained_models/CosyVoice-ttsfrd
+.venv/bin/hf download "FunAudioLLM/Fun-CosyVoice3-0.5B-2512" --local_dir ./CosyVoice/pretrained_models/Fun-CosyVoice3-0.5B
+.venv/bin/hf download "FunAudioLLM/CosyVoice-ttsfrd" --local_dir ./CosyVoice/pretrained_models/CosyVoice-ttsfrd
 rm -rf .venv
 ```
 
@@ -86,8 +88,8 @@ Download from ModelScope:
 ```bash
 python -m venv .venv
 .venv/bin/pip install -U modelscope
-.venv/bin/modelscope download "FunAudioLLM/Fun-CosyVoice3-0.5B-2512" --dir ./CosyVoice/pretrained_models/Fun-CosyVoice3-0.5B
-.venv/bin/modelscope download "iic/CosyVoice-ttsfrd" --dir ./CosyVoice/pretrained_models/CosyVoice-ttsfrd
+.venv/bin/modelscope download "FunAudioLLM/Fun-CosyVoice3-0.5B-2512" --local_dir ./CosyVoice/pretrained_models/Fun-CosyVoice3-0.5B
+.venv/bin/modelscope download "iic/CosyVoice-ttsfrd" --local_dir ./CosyVoice/pretrained_models/CosyVoice-ttsfrd
 rm -rf .venv
 ```
 

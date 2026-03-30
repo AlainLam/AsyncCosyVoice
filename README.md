@@ -1,5 +1,7 @@
 # Async CosyVoice
 
+[中文](./README.md) | [English](./README.EN.md)
+
 本项目将原本 [CosyVoice](https://github.com/FunAudioLLM/CosyVoice) 中的同步 LLM 推理改为基于 `AsyncLLMEngine` 的异步实现，并在推理过程中做了一些针对场景的优化调整。
 
 ## 主要改动
@@ -54,17 +56,17 @@ conda create -n cosyvoice python=3.10 -y
 conda activate cosyvoice
 ```
 
-4. CosyVoice 需要低于 82.0 的 `setuptools`，这里直接使用一个兼容版本
+4. CosyVoice 需要低于 82.0 的 `setuptools`，这里直接使用一组兼容版本
 
 ```bash
-pip install --force-reinstall setuptools==59.6.0 wheel==0.37.1 wheel_stub==0.5.0
+pip install --force-reinstall numpy==1.26.4 setuptools==59.6.0 wheel==0.37.1 wheel_stub==0.5.0
 ```
 
 5. 安装依赖：先安装 CosyVoice 的依赖，再安装当前项目的依赖
 
 ```bash
-pip install -r CosyVoice/requirements.txt
-pip install -r requirements.txt
+pip install --no-build-isolation -r CosyVoice/requirements.txt
+pip install --no-build-isolation -r requirements.txt
 ```
 
 6. 确保你的模型文件已经准备好，如果没有，请使用以下命令下载：
@@ -76,8 +78,8 @@ pip install -r requirements.txt
 ```bash
 python -m venv .venv
 .venv/bin/pip install -U huggingface_hub
-.venv/bin/hf download "FunAudioLLM/Fun-CosyVoice3-0.5B-2512" --dir ./CosyVoice/pretrained_models/Fun-CosyVoice3-0.5B
-.venv/bin/hf download "FunAudioLLM/CosyVoice-ttsfrd" --dir ./CosyVoice/pretrained_models/CosyVoice-ttsfrd
+.venv/bin/hf download "FunAudioLLM/Fun-CosyVoice3-0.5B-2512" --local_dir ./CosyVoice/pretrained_models/Fun-CosyVoice3-0.5B
+.venv/bin/hf download "FunAudioLLM/CosyVoice-ttsfrd" --local_dir ./CosyVoice/pretrained_models/CosyVoice-ttsfrd
 rm -rf .venv
 ```
 
@@ -86,8 +88,8 @@ rm -rf .venv
 ```bash
 python -m venv .venv
 .venv/bin/pip install -U modelscope
-.venv/bin/modelscope download "FunAudioLLM/Fun-CosyVoice3-0.5B-2512" --dir ./CosyVoice/pretrained_models/Fun-CosyVoice3-0.5B
-.venv/bin/modelscope download "iic/CosyVoice-ttsfrd" --dir ./CosyVoice/pretrained_models/CosyVoice-ttsfrd
+.venv/bin/modelscope download "FunAudioLLM/Fun-CosyVoice3-0.5B-2512" --local_dir ./CosyVoice/pretrained_models/Fun-CosyVoice3-0.5B
+.venv/bin/modelscope download "iic/CosyVoice-ttsfrd" --local_dir ./CosyVoice/pretrained_models/CosyVoice-ttsfrd
 rm -rf .venv
 ```
 
